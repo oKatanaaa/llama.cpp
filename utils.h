@@ -17,8 +17,7 @@ struct gpt_params {
     int32_t n_threads = std::min(4, (int32_t) std::thread::hardware_concurrency());
     int32_t n_predict = 128; // new tokens to predict
     int32_t repeat_last_n = 64;  // last n tokens to penalize
-    int32_t n_ctx = 512; //context size
-    
+
     // sampling parameters
     int32_t top_k = 40;
     float   top_p = 0.95f;
@@ -35,6 +34,7 @@ struct gpt_params {
     bool interactive = false; // interactive mode
     bool interactive_start = false; // reverse prompt immediately
     std::string antiprompt = ""; // string upon seeing which more user input is prompted
+    bool ignore_eos = false; // do not stop generating after eos
 };
 
 bool gpt_params_parse(int argc, char ** argv, gpt_params & params);
